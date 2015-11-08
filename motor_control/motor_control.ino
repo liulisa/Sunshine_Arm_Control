@@ -15,8 +15,8 @@ Adafruit_DCMotor *rotator = AFMS.getMotor(1);
 Adafruit_DCMotor *shoulder = AFMS.getMotor(2);
 Adafruit_DCMotor *elbow = AFMS.getMotor(3);
 Adafruit_DCMotor *wrist = AFMS.getMotor(4);
-#define gripper_1 13;   // 5th motor's first H-bridge switch
-#define gripper_2 14;   // 5th motor's second H-bridge switch
+#define gripper_1 12;   // 5th motor's first H-bridge switch
+#define gripper_2 13;   // 5th motor's second H-bridge switch
 int default_speed = 50;
 
 // action keywords
