@@ -12,11 +12,12 @@ Adafruit_MotorShield AFMS = Adafruit_MotorShield();
 
 // Select which ports for each motor. Arduino shield has four motor ports.
 Adafruit_DCMotor *rotator = AFMS.getMotor(1);
-Adafruit_DCMotor *shoulder = AFMS.getMotor(2);
-Adafruit_DCMotor *elbow = AFMS.getMotor(3);
-Adafruit_DCMotor *wrist = AFMS.getMotor(4);
-#define gripper_1 12   // 5th motor's first H-bridge switch
-#define gripper_2 13   // 5th motor's second H-bridge switch
+//Adafruit_DCMotor *shoulder = AFMS.getMotor(2);
+Adafruit_DCMotor *elbow = AFMS.getMotor(2);
+Adafruit_DCMotor *wrist = AFMS.getMotor(3);
+Adafruit_DCMotor *gripper = AFMS.getMotor(4);
+#define shoulder_1 12   // 5th motor's first H-bridge switch
+#define shoulder_2 13   // 5th motor's second H-bridge switch
 int default_speed = 255;
 int gripper_speed = 40;
 
@@ -42,9 +43,10 @@ void setup() {
 
   // set default speeds
   rotator->setSpeed(default_speed);
-  shoulder->setSpeed(default_speed);
   elbow->setSpeed(default_speed);
   wrist->setSpeed(default_speed);
+  gripper->setSpeed(gripper_speed);
+
 
   // this is for Serial testing
 }
@@ -72,10 +74,10 @@ void run_action(int action_key) {
       rotator->run(BACKWARD);
       break;
     case shoulder_in:
-      shoulder->run(FORWARD);
+      shoulder_run(FORWARD);
       break;
     case shoulder_out:
-      shoulder->run(BACKWARD);
+      shoulder_run(BACKWARD);
       break;
     case elbow_in:
       elbow->run(FORWARD);
@@ -90,48 +92,43 @@ void run_action(int action_key) {
       wrist->run(BACKWARD);
       break;
     case gripper_close:
-      gripper_run(FORWARD);
+      gripper->run(FORWARD);
       break;
     case gripper_open:
-      gripper_run(BACKWARD);
+      gripper->run(BACKWARD);
       break;
     default:
       // make sure the robot has no movement
       rotator->run(RELEASE);
-      shoulder->run(RELEASE);
+      shoulder_run(RELEASE);
       elbow->run(RELEASE);
       wrist->run(RELEASE);
-      //gripper_run(RELEASE);
-      digitalWrite(gripper_1, LOW);
-      digitalWrite(gripper_2, LOW);
+      gripper->run(RELEASE);
+
       break;
 
   }
 }
 
-void gripper_setSpeed(int speed_val) {
-  gripper_speed = speed_val;
-}
-
-void gripper_run(int dir) {
+void shoulder_run(int dir) {
   switch (dir) {
     case FORWARD:
-      digitalWrite(gripper_2, LOW);
-      digitalWrite(gripper_1, HIGH);
-      Serial.print(gripper_1);
+      digitalWrite(shoulder_2, LOW);
+      digitalWrite(shoulder_1, HIGH);
+      Serial.print(shoulder_1);
       Serial.println(" is on");
       delay(500);
       break;
     case BACKWARD:
-      digitalWrite(gripper_1, LOW);
-      digitalWrite(gripper_2, HIGH);
-      Serial.print(gripper_2);
+      digitalWrite(shoulder_1, LOW);
+      digitalWrite(shoulder_2, HIGH);
+      Serial.print(shoulder_2);
       Serial.println(" is on");
       delay(500);
       break;
     default:
-      digitalWrite(gripper_1, LOW);
-      digitalWrite(gripper_2, LOW);
+      digitalWrite(shoulder_1, LOW);
+      digitalWrite(shoulder_2, LOW);
       break;
   }
 
