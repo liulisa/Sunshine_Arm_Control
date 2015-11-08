@@ -15,9 +15,9 @@ Adafruit_DCMotor *rotator = AFMS.getMotor(1);
 Adafruit_DCMotor *shoulder = AFMS.getMotor(2);
 Adafruit_DCMotor *elbow = AFMS.getMotor(3);
 Adafruit_DCMotor *wrist = AFMS.getMotor(4);
-#define gripper_1 12;   // 5th motor's first H-bridge switch
-#define gripper_2 13;   // 5th motor's second H-bridge switch
-int default_speed = 50;
+#define gripper_1 12   // 5th motor's first H-bridge switch
+#define gripper_2 13   // 5th motor's second H-bridge switch
+int default_speed = 100;
 
 // action keywords
 #define rotate_left 1
@@ -51,12 +51,10 @@ void setup() {
 
 void loop() {
   // test motors using serial input
-  /*command = Serial.parseInt();
+  command = Serial.parseInt();
   Serial.print("I received: ");
   Serial.println( command, DEC);
-  run_action(command);*/
-
-  Serial.println(BACKWARD);
+  run_action(command);
 }
 
 void run_action(int action_key) {
@@ -123,9 +121,7 @@ void gripper_run(int dir){
       break;
     default:
       digitalWrite(gripper_1, LOW);
-      digitalWrite(gripper_2, LOW);    
-  }
-  
+      digitalWrite(gripper_2, LOW);
+      break;
+  } 
 }
-
-
