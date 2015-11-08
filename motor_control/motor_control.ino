@@ -57,6 +57,9 @@ void loop() {
   run_action(command);*/
 
   Serial.println(BACKWARD);
+  
+
+  
 }
 
 void run_action(int action_key) {
@@ -88,9 +91,10 @@ void run_action(int action_key) {
         wrist->run(BACKWARD);
         break;
       case gripper_close:
-        
+        gripper_run(FORWARD);
         break;
       case gripper_open:
+        gripper_run(BACKWARD);
         break;
       default:
         // make sure the robot has no movement
@@ -98,6 +102,7 @@ void run_action(int action_key) {
         shoulder->run(RELEASE);
         elbow->run(RELEASE);
         wrist->run(RELEASE);
+        gripper_run(RELEASE);
         break;
   
     }
