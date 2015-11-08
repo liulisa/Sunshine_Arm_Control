@@ -21,6 +21,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{4D5C3EB5-3FCF-4017-9BA7-EF9719E596FB}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
+    <ProjectName>SunshineArmySln</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
@@ -82,7 +83,7 @@
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\OliWhail\Documents\GitHub\Sunshine_Arm_Control\myo-sdk-win-0.9.0\include\Arduino-master\hardware\arduino;C:\Users\OliWhail\Documents\GitHub\Sunshine_Arm_Control\myo-sdk-win-0.9.0\include;..\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -162,7 +163,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="emg-data-sample.cpp" />
+    <ClCompile Include="SunshineArmy.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
