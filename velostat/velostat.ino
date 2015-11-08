@@ -6,7 +6,7 @@
 
 int velostatPin = A1;
 int velostatValue = 0;
-int threshold = 500;
+int threshold = 255;
 
 void setup() {
   Serial.begin(9600);
@@ -20,4 +20,5 @@ void loop() {
   velostatValue = analogRead(velostatPin);
   Serial.println(velostatValue);
   delay(1000);
+  //if (velostatValue > threshold){ Serial.println("button pressed");}
 }
