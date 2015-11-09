@@ -36,40 +36,36 @@ int command = 0;
 // velostat port
 int velostatPin = A1;
 int velostatValue = 0;
-int velostatThreshold = 240;
+int velostatThreshold = 250;
 
 
 void setup() {
   Serial.begin(115200);       // setup Serial library at 115200 bps
-  Serial.println("Yay motors");
 
   AFMS.begin();     // create w/ default freq 1.6 KHz
 
   // set default speeds
   rotator->setSpeed(default_speed*2);
   shoulder->setSpeed(default_speed*1.5);
-  grip->setSpeed(default_speed/2);
+  grip->setSpeed(default_speed/2.5);
   wrist->setSpeed(default_speed);
   int elbowspeed = default_speed;
-
   // this is for Serial testing
 }
 
 void loop() {
   // test motors using serial input
   command = Serial.parseInt();
-  //Serial.print("I received: ");
-  Serial.println(command, DEC);
 
   velostatValue = analogRead(velostatPin);
   if (velostatValue > velostatThreshold){
     // code for haptic feedback below
     Serial.println(velostatValue - velostatThreshold);
-    command = 0;  // do nothing if velostat is over threshold
+    if (command == 5){
+      command = 0;  // do nothing if velostat is over threshold
+    }
   }
-  
   run_action(command);
-  delay(100);
 }
 
 void run_action(int action_key) {
@@ -122,16 +118,10 @@ void elbow_run(int dir) {
     case FORWARD:
       digitalWrite(elbow_2, LOW);
       digitalWrite(elbow_1, HIGH);
-      Serial.print(elbow_1);
-      Serial.println(" is on");
-      delay(250);
       break;
     case BACKWARD:
       digitalWrite(elbow_1, LOW);
       digitalWrite(elbow_2, HIGH);
-      Serial.print(elbow_2);
-      Serial.println(" is on");
-      delay(250);
       break;
     default:
       digitalWrite(elbow_1, LOW);

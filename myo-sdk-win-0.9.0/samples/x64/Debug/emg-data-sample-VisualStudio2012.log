@@ -1,17 +1,19 @@
-﻿Build started 11/8/2015 4:56:14 PM.
+﻿Build started 11/8/2015 9:03:16 PM.
      1>Project "C:\Users\OliWhail\Documents\GitHub\Sunshine_Arm_Control\myo-sdk-win-0.9.0\samples\emg-data-sample-VisualStudio2012.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Creating "x64\Debug\SunshineArmySln.unsuccessfulbuild" because "AlwaysCreate" was specified.
        GenerateTargetFrameworkMonikerAttribute:
        Skipping target "GenerateTargetFrameworkMonikerAttribute" because all output files are up-to-date with respect to the input files.
        ClCompile:
-         All outputs are up-to-date.
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\x86_amd64\CL.exe /c /I"C:\Users\OliWhail\Documents\GitHub\Sunshine_Arm_Control\myo-sdk-win-0.9.0\include" /I..\include /AI"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0" /Zi /clr /nologo /W3 /WX- /Od /D WIN32 /D _DEBUG /D _CONSOLE /EHa /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Debug\\" /Fd"x64\Debug\vc100.pdb" /TP /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Core.dll" /errorReport:prompt SunshineArmy.cpp /clr:nostdlib 
+         SunshineArmy.cpp
          All outputs are up-to-date.
        Link:
-         All outputs are up-to-date.
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\OliWhail\Documents\GitHub\Sunshine_Arm_Control\myo-sdk-win-0.9.0\samples\x64\Debug\emg-data-sample.exe" /INCREMENTAL /NOLOGO /LIBPATH:..\lib myo64.lib /MANIFEST /ManifestFile:"x64\Debug\emg-data-sample.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\OliWhail\Documents\GitHub\Sunshine_Arm_Control\myo-sdk-win-0.9.0\samples\x64\Debug\emg-data-sample.pdb" /ASSEMBLYDEBUG /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /FIXED:NO /NXCOMPAT /MACHINE:X64 x64\Debug\SunshineArmy.obj
+         "x64\Debug\.NETFramework,Version=v4.0.AssemblyAttributes.obj"
          emg-data-sample-VisualStudio2012.vcxproj -> C:\Users\OliWhail\Documents\GitHub\Sunshine_Arm_Control\myo-sdk-win-0.9.0\samples\x64\Debug\emg-data-sample.exe
-       MetaGen:
-       Skipping target "MetaGen" because all output files are up-to-date with respect to the input files.
+       Manifest:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"C:\Users\OliWhail\Documents\GitHub\Sunshine_Arm_Control\myo-sdk-win-0.9.0\samples\x64\Debug\emg-data-sample.exe;#1" /manifest "x64\Debug\emg-data-sample.exe.intermediate.manifest"
        PostBuildEvent:
          Description: Copy required dlls to output directory
          COPY "..\bin\myo64.dll" "C:\Users\OliWhail\Documents\GitHub\Sunshine_Arm_Control\myo-sdk-win-0.9.0\samples\x64\Debug\"
@@ -25,4 +27,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:00.15
+Time Elapsed 00:00:14.50

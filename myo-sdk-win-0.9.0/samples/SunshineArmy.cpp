@@ -232,6 +232,7 @@ int main(int argc, char** argv)
 		int BAUD_RATE = 115200; //typically 9600 or 115200
 		SerialPort port(portname, BAUD_RATE);
 		port.Open();
+		int timeSinceUpdate = 0;
 		StateMachine machine;
 
 		// Finally we enter our main loop.
@@ -241,6 +242,7 @@ int main(int argc, char** argv)
 		bool hasRest = false;
 		while (1) {
 			hub.run(runtime);
+			timeSinceUpdate += runtime;
 			// After processing events, we call the update() member function we defined above to determine
 			// where the state machine should move and print the state and gesture to console.
 			if (machine.state == 2 || machine.state == 3 || machine.state == 4){
@@ -256,8 +258,11 @@ int main(int argc, char** argv)
 				machine.update(&collector);
 			}
 			// cout<<machine.state<<"\n";
-			port.Write(System::Convert::ToString(machine.state));
-			Sleep(1000);
+			if (timeSinceUpdate >= 1000){ //only send once/second max
+				port.Write(System::Convert::ToString(machine.state));
+				timeSinceUpdate -= 1000;
+			}
+			//Console::Write(port.ReadLine());
 		}
 		port.Close();
     // If a standard exception occurred, we print out its message and exit.
