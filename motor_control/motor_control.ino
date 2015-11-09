@@ -1,5 +1,6 @@
 /* This code will run motors on the Toy Arm Edge based on given commands.
-    Lisa Liu - Nov 7, 2015
+    Lisa Liu, Oliver ????, Albert ???? 
+    11/8/2015
 
 */
 
@@ -32,6 +33,12 @@ int default_speed = 60;
 #define grip_out 6
 int command = 0;
 
+// velostat port
+int velostatPin = A1;
+int velostatValue = 0;
+int velostatThreshold = 240;
+
+
 void setup() {
   Serial.begin(115200);       // setup Serial library at 115200 bps
   Serial.println("Yay motors");
@@ -53,6 +60,14 @@ void loop() {
   command = Serial.parseInt();
   //Serial.print("I received: ");
   Serial.println(command, DEC);
+
+  velostatValue = analogRead(velostatPin);
+  if (velostatValue > velostatThreshold){
+    // code for haptic feedback below
+    Serial.println(velostatValue - velostatThreshold);
+    command = 0;  // do nothing if velostat is over threshold
+  }
+  
   run_action(command);
   delay(100);
 }
