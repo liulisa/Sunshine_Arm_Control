@@ -1,0 +1,8 @@
+﻿Build started 11/7/2015 12:17:23 PM.
+     1>Project "C:\Users\OliWhail\Desktop\dubhacksworkshop\myo-sdk-win-0.9.0\samples\hello-myo-VisualStudio2012.vcxproj" on node 2 (build target(s)).
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\Platforms\x64\Microsoft.Cpp.x64.Targets(514,5): error MSB8008: Specified platform toolset (v110) is not installed or invalid. Please make sure that a supported PlatformToolset value is selected.
+     1>Done Building Project "C:\Users\OliWhail\Desktop\dubhacksworkshop\myo-sdk-win-0.9.0\samples\hello-myo-VisualStudio2012.vcxproj" (build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:00.00

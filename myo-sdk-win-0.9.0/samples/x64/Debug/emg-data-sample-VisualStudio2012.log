@@ -1,0 +1,28 @@
+﻿Build started 11/8/2015 4:56:14 PM.
+     1>Project "C:\Users\OliWhail\Documents\GitHub\Sunshine_Arm_Control\myo-sdk-win-0.9.0\samples\emg-data-sample-VisualStudio2012.vcxproj" on node 2 (build target(s)).
+     1>InitializeBuildStatus:
+         Creating "x64\Debug\SunshineArmySln.unsuccessfulbuild" because "AlwaysCreate" was specified.
+       GenerateTargetFrameworkMonikerAttribute:
+       Skipping target "GenerateTargetFrameworkMonikerAttribute" because all output files are up-to-date with respect to the input files.
+       ClCompile:
+         All outputs are up-to-date.
+         All outputs are up-to-date.
+       Link:
+         All outputs are up-to-date.
+         emg-data-sample-VisualStudio2012.vcxproj -> C:\Users\OliWhail\Documents\GitHub\Sunshine_Arm_Control\myo-sdk-win-0.9.0\samples\x64\Debug\emg-data-sample.exe
+       MetaGen:
+       Skipping target "MetaGen" because all output files are up-to-date with respect to the input files.
+       PostBuildEvent:
+         Description: Copy required dlls to output directory
+         COPY "..\bin\myo64.dll" "C:\Users\OliWhail\Documents\GitHub\Sunshine_Arm_Control\myo-sdk-win-0.9.0\samples\x64\Debug\"
+               
+         :VCEnd
+                 1 file(s) copied.
+       FinalizeBuildStatus:
+         Deleting file "x64\Debug\SunshineArmySln.unsuccessfulbuild".
+         Touching "x64\Debug\SunshineArmySln.lastbuildstate".
+     1>Done Building Project "C:\Users\OliWhail\Documents\GitHub\Sunshine_Arm_Control\myo-sdk-win-0.9.0\samples\emg-data-sample-VisualStudio2012.vcxproj" (build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:00.15
