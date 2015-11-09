@@ -9,53 +9,55 @@
 
 using namespace std;
 
-#define RX_BUFFSIZE 20
+#define RX_BUFFSIZE 2
 
 void printUsage(_TCHAR progName[]);
 
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-	if(argc != 2)
-	{
-		printUsage(argv[0]);
+	//if(argc != 2)
+	//{
+	//	printUsage(argv[0]);
 
-		cout << "press any key and enter to quit" << endl;
-		char temp;
-		cin >> temp;
+	//	cout << "press any key and enter to quit" << endl;
+	//	char temp;
+	//	cin >> temp;
+	//
+	//	//return 10;
+	//}
 
-		return 10;
-	}
-
-		try
+	try
 	{
 		cout << "Opening com port"<< endl;
-		tstring commPortName(argv[1]);
+		tstring commPortName(TEXT("COM6"));
 		Serial serial(commPortName);
 		cout << "Port opened" << endl;
-
-		cout << "writing something to the serial port" << endl;
-		serial.flush();
-		char hi[] = "Hello";
-		int bytesWritten = serial.write(hi);
-		cout << bytesWritten << " bytes were written to the serial port" << endl;
-		if(bytesWritten != sizeof(hi) - 1)
+		
+		while (1)
 		{
-			cout << "Writing to the serial port timed out" << endl;
+			cout << "writing something to the serial port" << endl;
+			serial.flush();
+			char hi[] = "1";
+			int bytesWritten = serial.write(hi);
+			cout << bytesWritten << " bytes were written to the serial port" << endl;
+			Sleep(1010);
+			if(bytesWritten != sizeof(hi) - 1)
+			{
+				cout << "Writing to the serial port timed out" << endl;
+			}
+
+//			char buffer[] = "1";
+//
+//			cout << "Reading from the serial port: ";
+//			while (buffer != hi)
+//			{
+//				int charsRead = serial.read(buffer, RX_BUFFSIZE);
+//			}
+//			cout << buffer << endl;
 		}
-
-		char buffer[RX_BUFFSIZE];
-
-		cout << "Reading from the serial port: ";
-		for(int i = 0; i < 10; i++)
-		{
-			int charsRead = serial.read(buffer, RX_BUFFSIZE);
-			cout << buffer;
-			Sleep(100);
-		}
-		cout << endl;
-
-	}catch(const char *msg)
+	}
+	catch(const char *msg)
 	{
 		cout << msg << endl;
 	}
