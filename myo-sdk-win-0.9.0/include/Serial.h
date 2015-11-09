@@ -15,11 +15,16 @@
 
 #ifndef __SERIAL_H__
 #define __SERIAL_H__
+#endif
 
 #include <string>
 #include <windows.h>
 
 typedef std::basic_string<TCHAR> tstring;
+
+//#ifdef __cplusplus
+//extern "C"{
+//#endif
 
 class Serial
 {
@@ -63,4 +68,6 @@ public:
 	void flush();
 };
 
-#endif
+//#ifdef __cplusplus
+//}
+//#endif

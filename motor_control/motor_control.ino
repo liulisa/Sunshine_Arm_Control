@@ -13,42 +13,37 @@ Adafruit_MotorShield AFMS = Adafruit_MotorShield();
 // Select which ports for each motor. Arduino shield has four motor ports.
 Adafruit_DCMotor *rotator = AFMS.getMotor(1);
 Adafruit_DCMotor *shoulder = AFMS.getMotor(2);
-Adafruit_DCMotor *elbow = AFMS.getMotor(3);
+Adafruit_DCMotor *grip = AFMS.getMotor(3);
 Adafruit_DCMotor *wrist = AFMS.getMotor(4);
-#define gripper_1 12   // 5th motor's first H-bridge switch
-#define gripper_2 13   // 5th motor's second H-bridge switch
-<<<<<<< HEAD
-int default_speed = 100;
-=======
-int default_speed = 255;
-int gripper_speed = 40;
->>>>>>> refs/remotes/origin/master
+#define elbow_1 12   // 5th motor's first H-bridge switch
+#define elbow_2 13   // 5th motor's second H-bridge switch
+int default_speed = 60;
 
 // action keywords
-#define rotate_left 1
-#define rotate_right 2
-#define shoulder_in 3
-#define shoulder_out 4
-#define elbow_in 5
-#define elbow_out 6
-#define wrist_in 7
-#define wrist_out 8
-#define gripper_close 9
-#define gripper_open 10
+#define rotate_left 14
+#define rotate_right 13
+#define shoulder_down 11
+#define shoulder_up 12
+#define elbow_down 10
+#define elbow_up 9
+#define wrist_down 8
+#define wrist_up 7
+#define grip_in 5
+#define grip_out 6
 int command = 0;
 
-
 void setup() {
-  Serial.begin(9600);       // setup Serial library at 9600 bps
-  Serial.println("Motor code 2!");
+  Serial.begin(115200);       // setup Serial library at 115200 bps
+  Serial.println("Yay motors");
 
   AFMS.begin();     // create w/ default freq 1.6 KHz
 
   // set default speeds
-  rotator->setSpeed(default_speed);
-  shoulder->setSpeed(default_speed);
-  elbow->setSpeed(default_speed);
+  rotator->setSpeed(default_speed*2);
+  shoulder->setSpeed(default_speed*1.5);
+  grip->setSpeed(default_speed/2);
   wrist->setSpeed(default_speed);
+  int elbowspeed = default_speed;
 
   // this is for Serial testing
 }
@@ -56,94 +51,76 @@ void setup() {
 void loop() {
   // test motors using serial input
   command = Serial.parseInt();
-  Serial.print("I received: ");
-  Serial.println( command, DEC);
+  //Serial.print("I received: ");
+  Serial.println(command, DEC);
   run_action(command);
-<<<<<<< HEAD
-=======
   delay(100);
-
-
-
->>>>>>> refs/remotes/origin/master
 }
 
 void run_action(int action_key) {
   switch (action_key) {
     case rotate_left:
       rotator->run(FORWARD);
-      Serial.println("I am rotated left");
-      delay(10);
       break;
     case rotate_right:
       rotator->run(BACKWARD);
       break;
-    case shoulder_in:
+    case shoulder_down:
       shoulder->run(FORWARD);
       break;
-    case shoulder_out:
+    case shoulder_up:
       shoulder->run(BACKWARD);
       break;
-    case elbow_in:
-      elbow->run(FORWARD);
+    case grip_in:
+      grip->run(FORWARD);
       break;
-    case elbow_out:
-      elbow->run(BACKWARD);
+    case grip_out:
+      grip->run(BACKWARD);
       break;
-    case wrist_in:
+    case wrist_down:
       wrist->run(FORWARD);
       break;
-    case wrist_out:
+    case wrist_up:
       wrist->run(BACKWARD);
       break;
-    case gripper_close:
-      gripper_run(FORWARD);
+    case elbow_down:
+      elbow_run(FORWARD);
       break;
-    case gripper_open:
-      gripper_run(BACKWARD);
+    case elbow_up:
+      elbow_run(BACKWARD);
       break;
     default:
       // make sure the robot has no movement
       rotator->run(RELEASE);
       shoulder->run(RELEASE);
-      elbow->run(RELEASE);
+      grip->run(RELEASE);
       wrist->run(RELEASE);
       //gripper_run(RELEASE);
-      digitalWrite(gripper_1, LOW);
-      digitalWrite(gripper_2, LOW);
+      digitalWrite(elbow_1, LOW);
+      digitalWrite(elbow_2, LOW);
       break;
-
   }
 }
 
-void gripper_setSpeed(int speed_val) {
-  gripper_speed = speed_val;
-}
-
-void gripper_run(int dir) {
+void elbow_run(int dir) {
   switch (dir) {
     case FORWARD:
-      digitalWrite(gripper_2, LOW);
-      digitalWrite(gripper_1, HIGH);
-      Serial.print(gripper_1);
+      digitalWrite(elbow_2, LOW);
+      digitalWrite(elbow_1, HIGH);
+      Serial.print(elbow_1);
       Serial.println(" is on");
-      delay(500);
+      delay(250);
       break;
     case BACKWARD:
-      digitalWrite(gripper_1, LOW);
-      digitalWrite(gripper_2, HIGH);
-      Serial.print(gripper_2);
+      digitalWrite(elbow_1, LOW);
+      digitalWrite(elbow_2, HIGH);
+      Serial.print(elbow_2);
       Serial.println(" is on");
-      delay(500);
+      delay(250);
       break;
     default:
-      digitalWrite(gripper_1, LOW);
-      digitalWrite(gripper_2, LOW);
+      digitalWrite(elbow_1, LOW);
+      digitalWrite(elbow_2, LOW);
       break;
-<<<<<<< HEAD
   } 
-=======
-  }
-
->>>>>>> refs/remotes/origin/master
 }

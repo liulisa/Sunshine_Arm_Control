@@ -12,6 +12,10 @@ using namespace std;
 
 #include "Serial.h"
 
+//#ifdef __cplusplus
+//extern "C"{
+//#endif
+
 Serial::Serial(tstring &commPortName, int bitRate)
 {
 	commHandle = CreateFile(commPortName.c_str(), GENERIC_READ|GENERIC_WRITE, 0,NULL, OPEN_EXISTING, 
@@ -107,3 +111,7 @@ void Serial::flush()
 		numBytes = read(buffer, FLUSH_BUFFSIZE, false);
 	}
 }
+
+//#ifdef __cplusplus
+//}
+//#endif
